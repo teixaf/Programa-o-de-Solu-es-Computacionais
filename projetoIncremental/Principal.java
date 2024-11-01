@@ -3,8 +3,8 @@ import java.util.Scanner;
 
 public class Principal {
     public static void main(String[] args) {
-        CartaoDeCredito c = new CartaoDeCredito();
-        c.setCpf("12312352636");
+        CartaoDeCredito c = new CartaoDeCredito(123456, "Gabriel", "06898279548");
+
         c.setLimite(100);
         Scanner sc = new Scanner(System.in);
 
@@ -18,23 +18,27 @@ public class Principal {
 
             opcao = sc.nextInt();
 
-            
             switch (opcao) {
                 case 1:
-                    System.out.println(c.consultarLimite());
+                    System.out.println("Limite atual: " + c.consultarLimite());
                     break;
                 case 2:
-                    System.out.println(c.consultarTotalFatura());
+                    System.out.println("Total da fatura: " + c.consultarTotalFatura());
                     break;
                 case 3:
-                    System.out.println("Digite o valor da compra");
+                    System.out.println("Digite o valor da compra:");
                     double valor = sc.nextDouble();
-                    c.realizarCompra(valor);
+                    c.realizarCompra(valor, true);
+                    break;
+                case 0:
+                    System.out.println("Saindo...");
                     break;
                 default:
                     System.out.println("Opção inválida");
                     break;
             }
         } while (opcao != 0);
+
+        sc.close(); // Fechando o Scanner
     }
 }
